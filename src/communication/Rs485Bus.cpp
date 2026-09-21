@@ -22,7 +22,7 @@ void Rs485Bus::begin() {
   modbus_.master();
 }
 
-bool Rs485Bus::canStart() const {
+bool Rs485Bus::canStart() {
   return !inCooldown() && modbus_.slave() == 0;
 }
 
