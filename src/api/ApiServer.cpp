@@ -43,7 +43,7 @@ void ApiServer::loop() {
   server_.handleClient();
 }
 
-bool ApiServer::authorized() const {
+bool ApiServer::authorized() {
   const String configuredToken = GA_API_TOKEN;
   if (configuredToken.length() == 0) {
     return true;
