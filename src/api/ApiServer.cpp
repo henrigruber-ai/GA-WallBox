@@ -147,6 +147,13 @@ void ApiServer::fillStatus(JsonDocument& doc) const {
   setNullable(doc, "current_l2_a", s.currentL2A);
   setNullable(doc, "current_l3_a", s.currentL3A);
 
+  // The existing Fronius adapter contract contains per-phase active-power fields.
+  // Neither current driver provides billing-grade active power per phase, so the
+  // fields are present explicitly as null rather than being estimated.
+  doc["power_l1_w"] = nullptr;
+  doc["power_l2_w"] = nullptr;
+  doc["power_l3_w"] = nullptr;
+
   setNullable(doc, "temperature_c", s.temperatureC);
 
   doc["error_code"] = s.errorCode;
