@@ -7,6 +7,7 @@ Purpose: HTTP/JSON contract between the Fronius-Regler and GA-WallBox.
 #pragma once
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <WebServer.h>
 
 #include "../core/WallboxController.h"
