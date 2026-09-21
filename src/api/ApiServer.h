@@ -20,7 +20,7 @@ class ApiServer {
   void loop();
 
  private:
-  bool authorized() const;
+  bool authorized();
   void sendUnauthorized();
   void sendJson(int statusCode, const JsonDocument& doc);
   void fillStatus(JsonDocument& doc) const;
