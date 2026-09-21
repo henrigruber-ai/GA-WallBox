@@ -24,7 +24,7 @@ class Rs485Bus {
 
  private:
   bool waitForTransaction(uint32_t startedAt);
-  bool canStart() const;
+  bool canStart();
   void markFailure(uint8_t resultCode);
 
   HardwareSerial& serial_;
