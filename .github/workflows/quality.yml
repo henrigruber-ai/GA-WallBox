@@ -1,0 +1,39 @@
+# File: .github/workflows/quality.yml
+# Version: 0.1.0
+# Date: 2026-09-21
+# Purpose: Enforces repository rules and compiles both supported ESP32 firmware variants.
+
+name: Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+      - "feat/**"
+      - "fix/**"
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Repository checks
+        run: python scripts/check_repo.py
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Native unit tests
+        run: pio test -e native
+
+      - name: Build Pulsares firmware
+        run: pio run -e esp32-pulsares
+
+      - name: Build Heidelberg firmware
+        run: pio run -e esp32-heidelberg
